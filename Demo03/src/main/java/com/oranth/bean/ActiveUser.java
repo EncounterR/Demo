@@ -1,6 +1,8 @@
 package com.oranth.bean;
 
 
+import java.io.Serializable;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,8 +11,12 @@ import org.springframework.stereotype.Component;
  * 
  */
 @Component
-public class ActiveUser {
+public class ActiveUser implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4086690360180730665L;
 	private int userid;// 用户id
 	private String usercode;// 用户账号
 	private String username;// 用户名称
