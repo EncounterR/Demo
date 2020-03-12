@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 /**
  * 系统用户表
  * @author WU
- *
+ * 修改注释内容，测试提交
  */
 @Component
 public class SysUsers implements Serializable{
