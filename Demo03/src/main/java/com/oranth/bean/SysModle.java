@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 /**
- * 权限表
+ * 权限表 在权限表中修改，测试eclipse可以同步到此代码
  * @author WU
  *
  */
