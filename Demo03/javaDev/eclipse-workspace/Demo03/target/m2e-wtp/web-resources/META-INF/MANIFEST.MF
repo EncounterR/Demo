@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Demo03
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: WU
+Implementation-Vendor-Id: com.oranth
+Build-Jdk: 1.8.0_131
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Demo03
+Created-By: Maven Integration for Eclipse
+
