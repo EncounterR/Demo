@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oranth.mapper.LoginersMapper">
+	<resultMap id="BaseResultMap" type="com.oranth.bean.Loginers">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="username" jdbcType="VARCHAR"
+			property="username" />
+		<result column="datetime" jdbcType="TIMESTAMP"
+			property="datetime" />
+		<result column="user_role_id" jdbcType="INTEGER"
+			property="user_role_id" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, username, datetime, user_role_id
+	</sql>
+	<!-- getAll -->
+	<select id="getAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from loginers
+	</select>
+	<!-- getLoginersById -->
+	<select id="getLoginersById" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from loginers
+		where id=#{id}
+	</select>
+	<!-- getLoginersByUserRoleId -->
+	<select id="getLoginersByUserRoleId"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from loginers
+		where user_role_id=#{user_role_id}
+	</select>
+	<!-- addLoginer -->
+	<insert id="addLoginer" parameterType="com.oranth.bean.Loginers">
+		insert into loginers
+		(username,datetime,user_role_id)
+		values (#{username},
+		#{datetime},#{user_role_id})
+	</insert>
+	<!-- delLoginer -->
+	<delete id="delLoginer" parameterType="java.lang.Integer">
+		delete
+		from loginers
+		where
+		id=#{id}
+	</delete>
+	<!-- editLoginer -->
+	<update id="editLoginer"
+		parameterType="com.oranth.bean.Loginers">
+		update
+		loginers
+		set
+		username = #{username},
+		datetime
+		=#{datetime},
+		user_role_id = #{user_role_id},
+		where id=#{id}
+	</update>
+	<!-- getLoginersByNew -->
+	<select id="getLoginersByNew" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from loginers order by id desc LIMIT 5
+	</select>
+	<!-- getLoginersByNewAndUsername -->
+	<select id="getLoginersByNewAndUsername"
+		parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from loginers where username=#{username} order by id desc LIMIT 5
+	</select>
+</mapper>

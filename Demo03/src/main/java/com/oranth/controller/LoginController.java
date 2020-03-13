@@ -12,6 +12,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -111,5 +112,26 @@ public class LoginController {
 			mv.addObject("loginers", llist);
 		}
 		return mv;
+	}
+	/**
+	 * 跳转到聊天界面
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/websocket")
+	public String webSocket(HttpSession session,Model model) {
+		try{
+            //logger.info("跳转到websocket的页面上");
+			ActiveUser activeUser=(ActiveUser) session.getAttribute("activeUser");
+			String name =activeUser.getUsername();
+			System.out.println("--------------"+name);
+            model.addAttribute("username",name);
+            return "Webscoket";
+        }
+        catch (Exception e){
+            //logger.info("跳转到websocket的页面上发生异常，异常信息是："+e.getMessage());
+            return "404";
+        }
 	}
 }

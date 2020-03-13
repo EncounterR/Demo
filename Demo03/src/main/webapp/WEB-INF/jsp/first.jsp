@@ -79,9 +79,9 @@
 							</dl></li>
 					</c:forEach>
 					<!-- 友链设置 -->
-					<li class="layui-nav-item"><a href="javascript:;"> <i
-							class="iconfont icon-youqinglianjie"
-							data-icon='icon-youqinglianjie'></i> <span>友情链接</span>
+					<li class="layui-nav-item layui-this"><a href="javascript:;"
+						data-url="${basePath}websocket.action">
+							<i class="iconfont icon-home1" data-icon='icon-home1'></i><span>聊天</span>
 					</a></li>
 				</ul>
 			</div>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oranth.mapper.ProductSpecMapper">
+	<resultMap id="BaseResultMap" type="com.oranth.bean.ProductSpec">
+		<id column="spec_id" jdbcType="INTEGER" property="spec_id" />
+		<result column="spec_parent_id" jdbcType="INTEGER"
+			property="spec_parent_id" />
+		<result column="spec_name" jdbcType="VARCHAR"
+			property="spec_name" />
+		<result column="spec_type" jdbcType="VARCHAR"
+			property="spec_type" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		spec_id, spec_parent_id, spec_name,
+		spec_type
+	</sql>
+	<!-- getAll -->
+	<select id="getAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from product_spec
+	</select>
+	<!-- getProductSpecBySpecId -->
+	<select id="getProductSpecBySpecId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from product_spec
+		where spec_id=#{spec_id}
+	</select>
+	<!-- getProductSpecBySpecParentId -->
+	<select id="getProductSpecBySpecParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from product_spec
+		where spec_parent_id=#{spec_parent_id}
+	</select>
+	<!-- addProductSpec -->
+	<insert id="addProductSpec" parameterType="com.oranth.bean.ProductSpec">
+		insert into product_spec
+		( spec_parent_id, spec_name,spec_type)
+		values (#{spec_parent_id},#{spec_name},#{spec_type})
+		<selectKey keyProperty="spec_id" order="AFTER" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
+    	</selectKey>
+	</insert>
+	<!-- delProductSpec -->
+	<delete id="delProductSpec" parameterType="java.lang.Integer">
+		delete
+		from product_spec
+		where spec_id=#{spec_id}
+	</delete>
+	<!-- delSonProductSpec -->
+	<delete id="delSonProductSpec" parameterType="java.lang.Integer">
+		delete
+		from product_spec
+		where spec_parent_id=#{spec_parent_id}
+	</delete>
+	<!-- editProductSpec -->
+	<update id="editProductSpec" parameterType="com.oranth.bean.ProductSpec">
+		update
+		product_spec
+		set
+		spec_parent_id = #{spec_parent_id},
+		spec_name =#{spec_name},
+		spec_type = #{spec_type}
+		where spec_id=#{spec_id}
+	</update>
+</mapper>
